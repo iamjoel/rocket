@@ -73,10 +73,7 @@ const selected = await arg('请选择', [
       })
       return code
     },
-    value: {
-      type: 'search-engine',
-      content: 'https://cn.bing.com/search?q={q}'
-    }
+    value: {}
   },
 ])
 
