@@ -26,9 +26,26 @@ const sidebars = {
   tool: [
     {
       type: 'doc',
-      label: '介绍',
+      label: '工具',
       id: 'tool/intro',
     },
+    {
+      type: 'category',
+      label: '内容',
+      items: [
+        {
+          type: 'category',
+          label: '启动器',
+          items: [
+            {
+              type: 'doc',
+              label: 'Start Kit',
+              id: 'tool/glue/script-kit/intro/readme',
+            }
+          ]
+        }
+      ]
+    }
   ],
   solution: [
     {
