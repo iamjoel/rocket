@@ -8,6 +8,7 @@
 
  Create as many sidebars as you want.
  */
+const toolConfig = require('./sidebar-config/tool')
 
 // @ts-check
 
@@ -23,30 +24,7 @@ const sidebars = {
       id: 'philosophy/intro',
     },
   ],
-  tool: [
-    {
-      type: 'doc',
-      label: '工具',
-      id: 'tool/intro',
-    },
-    {
-      type: 'category',
-      label: '内容',
-      items: [
-        {
-          type: 'category',
-          label: '启动器',
-          items: [
-            {
-              type: 'doc',
-              label: 'Start Kit',
-              id: 'tool/glue/script-kit/intro/readme',
-            }
-          ]
-        }
-      ]
-    }
-  ],
+  tool: toolConfig,
   solution: [
     {
       type: 'doc',
