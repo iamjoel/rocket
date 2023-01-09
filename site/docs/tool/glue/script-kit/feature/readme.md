@@ -29,6 +29,17 @@
 const textInput = await arg('请输入:')
 ```
 
+### 信息确认
+```js
+let confirm = (await arg({
+        placeholder: `确认删除 XXX?`,
+        hint: '删除数据不可恢复',
+    }, [
+        { name: "取消", value: false },
+        { name: "确认", value: true },
+    ]))
+```
+
 ### 下拉选择
 ```js
 const selected = await arg('请选择最喜欢的食物:', [
@@ -63,28 +74,100 @@ value 可以是对象。
 
 :::
 
-### 进一步选择
-
-### 路径
-
+### 表单
+```js
+let [name, age] = await fields([
+  {
+      name: "name",
+      label: "Name",
+      type: "text",
+      placeholder: "John",
+      value: 'Joel' // 默认值
+  },
+  {
+      name: "age",
+      label: "Age",
+      type: "number",
+      placeholder: "40",
+  }
+])
+```
 
 ### 文件选择
 ```js
 const file = await selectFile()
 ```
 
-获取文件的路径。
+或通过放文件
+```js
+let fileInfos = await drop()
+```
 
+获取文件的路径。然后，可以根据路径来读取文件，做一些处理，比如：图片操作。比如，下面是读取图片元信息的代码：
+```js
+const imgPath = await selectFile()
+const exif = await npm('exifr')
+const res = await exif.parse(imgPath)
+
+inspect(res)
+```
+
+## 读当前输入的快捷键
+```js
+const keyData = await hotkey()
+```
+
+输入 `command + c`, 会返回这样的结果：
+```
+{
+	"key": "c",
+	"command": true,
+	"shift": false,
+	"option": false,
+	"control": false,
+	"fn": false,
+	"hyper": false,
+	"os": false,
+	"super": false,
+	"win": false,
+	"shortcut": "command c",
+	"keyCode": "KeyC"
+}
+```
+
+做后继很好。
 
 ## 与 App 交互
 ### 命令行
+```js
+await term(命令)
+```
+
+比如
+```js
+await term(`cd ~/.kenv/scripts && ls`)
+```
 
 ### 文件操作
 
 ### 浏览器
-#### 获取浏览器打开的
+#### 获取浏览器打开的窗口
+```js
+const tabs = await getTabs()
 ```
+
+返回:
+```js
+[
+  {
+    url: 'http: //...',
+  }
+]
 ```
+
+某项工作，
+摸鱼：一键切换网页。然后再一键恢复。
+
 
 ### Chrome 控制台
 
