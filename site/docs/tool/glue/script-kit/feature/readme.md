@@ -17,6 +17,8 @@
 ```
 
 ### 快捷键
+触发命令执行的快捷键。
+
 ```js
 // Shortcut: opt i
 ```
@@ -29,16 +31,7 @@
 const textInput = await arg('请输入:')
 ```
 
-### 信息确认
-```js
-let confirm = (await arg({
-        placeholder: `确认删除 XXX?`,
-        hint: '删除数据不可恢复',
-    }, [
-        { name: "取消", value: false },
-        { name: "确认", value: true },
-    ]))
-```
+
 
 ### 下拉选择
 ```js
@@ -75,6 +68,7 @@ value 可以是对象。
 :::
 
 ### 表单
+适用于多个数据的书
 ```js
 let [name, age] = await fields([
   {
@@ -98,7 +92,7 @@ let [name, age] = await fields([
 const file = await selectFile()
 ```
 
-或通过放文件
+或通过放文件：  
 ```js
 let fileInfos = await drop()
 ```
@@ -112,7 +106,7 @@ const res = await exif.parse(imgPath)
 inspect(res)
 ```
 
-## 读当前输入的快捷键
+### 读取按键
 ```js
 const keyData = await hotkey()
 ```
@@ -135,7 +129,45 @@ const keyData = await hotkey()
 }
 ```
 
-做后继很好。
+监听按键和鼠标移动，可以用 [iohook](https://www.npmjs.com/package/@hcfy/iohook)。
+
+### 信息确认
+```js
+let confirm = (await arg({
+        placeholder: `确认删除 XXX?`,
+        hint: '删除数据不可恢复',
+    }, [
+        { name: "取消", value: false },
+        { name: "确认", value: true },
+    ]))
+```
+
+## 展示
+### 展示 HTML
+```js
+div(`
+<h1>快乐的一天</h1>
+<p>今天真是个好日子</p>
+`)
+```
+
+支持 thailwind
+
+### 展示 Markdown
+```js
+div(md(`
+# 快乐的一天
+- 阳光明媚
+- 不用上班
+- 追的剧更新了
+`))
+```
+
+:::tip
+
+md() 返回的是解析成 html 的字符串，因此展示 Markdown 必须配合 div() 使用。
+
+:::
 
 ## 与 App 交互
 ### 命令行
